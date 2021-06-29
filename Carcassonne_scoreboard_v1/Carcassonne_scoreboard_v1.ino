@@ -1,5 +1,6 @@
 
 #include <Keypad.h>
+#include <LiquidCrystal.h>
 
 const byte ROWS_V = 4; //four ROWS_V
 const byte COLS_V = 4; //four columns
@@ -28,8 +29,12 @@ byte colPins_p[COLS_P] = {10, 11, 12};
 Keypad valueKeypad = Keypad( makeKeymap(wartosci), rowPins_v, colPins_v, ROWS_V, COLS_V); 
 Keypad playerKeypad = Keypad( makeKeymap(gracze), rowPins_p, colPins_p, ROWS_P, COLS_P); 
 
+LiquidCrystal lcd(14, 15, 16, 17, 18, 19);
+
 void setup(){
-  Serial.begin(9600);
+  //Serial.begin(9600);
+  lcd.begin(20, 4); //Deklaracja typu
+  lcd.setCursor(0,0);
 }
 
 char valueKey;
@@ -41,11 +46,11 @@ void loop(){
   
   if(playerKey)
   {
-    Serial.println(playerKey);
+    lcd.print(playerKey);
   }
   else if(valueKey)
   {
-    Serial.println(valueKey);
+    lcd.print(valueKey);
   }
 
 }
